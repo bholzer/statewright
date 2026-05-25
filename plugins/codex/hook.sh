@@ -71,10 +71,10 @@ case "$ENDPOINT" in
     if [ ! -f "$STATEWRIGHT_DIR/.update_checked" ]; then
       mkdir -p "$STATEWRIGHT_DIR"
       touch "$STATEWRIGHT_DIR/.update_checked"
-      LOCAL_VER=$(jq -r '.version // "0.0.0"' "$(dirname "$0")/plugin.json" 2>/dev/null || echo "0.0.0")
-      REMOTE_VER=$(curl -sf --max-time 3 "https://raw.githubusercontent.com/statewright/statewright/main/plugins/claude-code/plugin.json" 2>/dev/null | jq -r '.version // empty' 2>/dev/null || true)
+      LOCAL_VER=$(jq -r '.version // "0.0.0"' "$(dirname "$0")/.codex-plugin/plugin.json" 2>/dev/null || echo "0.0.0")
+      REMOTE_VER=$(curl -sf --max-time 3 "https://raw.githubusercontent.com/statewright/statewright/main/plugins/codex/.codex-plugin/plugin.json" 2>/dev/null | jq -r '.version // empty' 2>/dev/null || true)
       if [ -n "$REMOTE_VER" ] && [ "$LOCAL_VER" != "$REMOTE_VER" ]; then
-        echo "{\"hookSpecificOutput\":{\"hookEventName\":\"UserPromptSubmit\",\"additionalContext\":\"Statewright plugin update available: v${LOCAL_VER} → v${REMOTE_VER}. Run: /plugin install statewright to update.\"}}"
+        echo "{\"hookSpecificOutput\":{\"hookEventName\":\"UserPromptSubmit\",\"additionalContext\":\"Statewright plugin update available: v${LOCAL_VER} -> v${REMOTE_VER}. Run: codex plugin marketplace upgrade statewright && codex plugin add statewright@statewright to update.\"}}"
       fi
     fi
 

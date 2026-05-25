@@ -10,11 +10,18 @@
   "repository": "https://github.com/statewright/statewright",
   "license": "FSL-1.1-ALv2",
   "keywords": ["guardrails", "state-machine", "mcp", "agent-safety", "workflow"],
-  "hooks": "./hooks/hooks.json",
   "mcpServers": "./.mcp.json",
   "interface": {
     "displayName": "statewright",
     "shortDescription": "State machine guardrails — per-state tool enforcement for coding workflows.",
-    "category": "Developer Tools"
+    "longDescription": "Statewright enforces state-machine workflows for coding agents, constraining tools by phase so agents read, edit, test, and transition deliberately.",
+    "developerName": "statewright.ai",
+    "category": "Developer Tools",
+    "capabilities": ["MCP", "Workflow enforcement", "Tool guardrails"],
+    "defaultPrompt": [
+      "Start the bugfix workflow.",
+      "List available statewright workflows.",
+      "Show the current workflow state."
+    ]
   }
 }
